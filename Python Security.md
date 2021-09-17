@@ -269,3 +269,34 @@ def create_dictionary(clean_list):
 
 start(url)
 ~~~
+
+## Verificador IP externo
+
+~~~Python
+import json
+from urllib.request import urlopen
+
+url = 'https://www.ipinfo.io/json'
+resposta = urlopen(url)
+dados = json.load(resposta)
+~~~
+
+## Ferramenta gráfica para abrir o navegador
+
+Eu sei que não tem muito a ver, a princípio, com segurança, mas segue:
+
+~~~Python
+import webbrowser
+from tkinter import *
+
+root = Tk( ) # Observar a necessidade do espaço no campo de argumento desta função
+
+root.title('Abrir Browser')
+root.geometry('300x200')
+
+def google():
+    webbrowser.open('www.google.com')
+    
+mygoogle = Button(root, text='Abrir o Google', command=google).pack(pady=20)
+root.mainloop()
+~~~
