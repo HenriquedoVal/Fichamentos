@@ -1,5 +1,6 @@
 # BD NoSQL (key-value) Redis
 
+BD mais utilizado para cache e sessão de usuário pela simplicidade em temporizar a expiração do dado.
 Existe o sandbox do Redis, porém sem a opção de console, usar então https://try.redis.io/.
 O Redis tem o conceito de database também, porém não é explorado neste ultimo app, ele parte direto para a parte de manipulação de dados.
 ~~~
