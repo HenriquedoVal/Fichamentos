@@ -13,7 +13,7 @@ MATCH (X:Label{name:'Nome1'}), (Y:Label{name:'Nome2'}) CREATE (X) -[:nomeDoRelac
 MATCH (variavel1:Label{name:'Nome1'}) -[variavel2:NomeDoRelacionamento]-() DELETE variavel2;
 MATCH (var:Label{name:'Nome2'}) DELETE var;
 ~~~
-Respectivamente, consulta tudo, consulta nó especificado, cria um relacionamento entre nós já existentes, deleta um relacionamento e deleta um nó
+Respectivamente: consulta tudo, consulta nó especificado, cria um relacionamento entre nós já existentes, deleta um relacionamento e deleta um nó
 
 ~~~
 MATCH (V:Label{name:'Nome1'}) SET V.age = 35;
