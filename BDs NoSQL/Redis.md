@@ -19,7 +19,7 @@ LRANGE user2:cardeais 0 2
 ~~~
 LPUSH faz o *insert* no índice 0
 
-Para retornar o tipo de dado, o tempo de expiração, retirar o tempo de expiração e deletar o dado
+Para retornar o tipo de dado, o tempo de expiração, retirar o tempo de expiração e deletar o dado:
 ~~~
 TYPE user1:name
 TTL user1:name
