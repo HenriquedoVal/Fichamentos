@@ -1,4 +1,4 @@
-# BD NoSQL Neo4j
+# BD NoSQL (graph) Neo4j
 ## Estrutura básica:
 ~~~
 CREATE (:Label{age:31,name:'Nome1',hobbies:['exemplo 1','exemplo 2']}) -[:NomeDoRelacionamento]-> (:Label{name:'Nome2',hobbies:'exemplo 3'})
