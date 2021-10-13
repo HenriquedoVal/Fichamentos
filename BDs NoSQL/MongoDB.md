@@ -40,7 +40,19 @@ SELECT *
 cria nova collection de forma implícita e adiciona um documento com o dado
 
 > db.nova_collection.insert{[{"name": "José", "idade": 36},{"Cidade": "Poá"}]}
-gera dois documentos, chama-se bulkwriter
+cria a collection e gera dois documentos inserindo os dados; chama-se bulkwriter
 
 > db.collection.save()
 realiza a atualização ou a inserção caso não exista. Observar que precisa passar todo o id dentro do save
+
+> db.collection.update({"chave-p-identificar-o-doc-a-ser-atualizado": "valor-dessa-chave"}, {$set: {"chave": "valor"}});
+> db.collection.update({"chave-p-identificar-o-doc-a-ser-atualizado": "valor-dessa-chave"}, {$set: {"chave": "valor"}, {multi: true});
+todos os documentos cujas chaves forem identificadas serão atualizadas
+
+> db.collection.updateMany({"chave-identificadora-contida-em-varios-documentos": "valor-da-chave"}, {$set: {"chave-a-ser-inserida":"valor"}});
+
+> db.collection.find({"chave": "valor"}).limit(1)
+retorna somente o primeiro documento contendo essa chave e valor
+
+> db.collection.find({"chave": "valor", "outra-chave": "valor-correspondente"})
+para busca específica. quantas chaves forem necessárias
