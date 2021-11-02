@@ -76,5 +76,45 @@ deleta todos
 > for(var=i; i<10000; i++){db.collection.insert({"Nome": "cliente"+i, "age":i})}
 gera 10000 documentos com esses dados atribuindo à var i o valor conforme o loop
 
-> db.getCollection('collection').count({})
+> db.getCollection("collection").count({})
 retorna a contagem de documentos na collection (10000 nesse caso)
+
+> db.getCollection("collection").find({_id: {ObjectId('aklsdjflçajksd')}).explain(true)
+explain faz análise da query, trás alguns dados da consulta (tempo de exec, docs analisados, uso de índice...)
+será possível ver nesse caso que somente um doc foi analisado
+> db.getCollection("collection").find({name: "cliente0"}).explain(true)
+mostra agora 100000 doc analisados
+
+> db.getCollection("collection").createIndex({name : 1}, {"name": "idx_name"})
+cria índices para os docs
+> db.getCollection("collection").find({name: "cliente0"}).explain(true)
+ao rodar novamente esse comando, o resultado da análise retornará apenas um doc examinado devido ao uso de índice
+~~~
+
+## Agregações
+
+A sugestão de estudo é usando o sample dataset do Mongo Cloud (Atlas)
+~~~
+> db.getCollection("restaurants").count({})
+retornará mais de 23000 docs
+
+> db.getCollection("restaurants").distict("cuisine")
+retorna todos os possíveis valores para esse campo
+
+> db.getCollection("restaurants").aggregate([{$group: {_id: {"$cuisine", total: {$sum: 1}}}}])
+parâmentros do aggregate dentro de um array, pois podem ser infinitos
+nesse caso, retorna o total de restaurantes com uma determinada cozinha
+
+> db.getCollection("restaurants").aggregate([{$group: {_id :{"$cuisine", total: {$sum: 1}, id_maximo: {$max: "$restaurant_id"}}}}])
+retornara a query dos campos _id, total e id_maximo. vale o mesmo para $min e $avg (cuidado com o tipo de dado no avg - string ou number)
+
+> db.getCollection("restaurants").aggregate([{$addFields: {"teste": true}}])
+adiciona um campo ao resultado da query, um novo find({}) retornará os campos normais
+
+> db.getCollection("restaurants").aggregate([{$match: {$and: [{cuisine: "American"}, {borough: "Brooklyn"}]}}])
+$and: trás todos docs cujos ambos valores sejam os específicados
+> db.getCollection("restaurants").aggregate([{$match: {$or: [{cuisine: "American"}, {borough: "Brooklyn"}]}}])
+$or: um ou outro
+~~~
+Ainda os operadores de comparação
+$gt: >; $gte: >=; $lt: <; $lte: <=; $nte: !=; $eq: ==; 
