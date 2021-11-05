@@ -1,5 +1,8 @@
 # BD NoSQL (wide-column) Cassandra 
+
 Playground: https://katacoda.com/datastax/courses/cassandra-try-it-out/try-cql. Existe o sandbox do próprio Cassandra, porém é mais complexa configuração. Lembrar que os valores que são apresentados nas consultas como nulos não são salvos dessa forma, ao contrário dos bd relacionais. Linguagem CQL - Cassandra Query Language.
+Concebido principalmente para servir bd de aplicações web.
+
 ~~~
 CREATE KEYSPACE nomeDaKeyspace WITH replication = {'class':'SimpleStrategy', 'replication_factor': 1};
 USE nomeDaKeyspace;

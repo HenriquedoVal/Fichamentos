@@ -1,6 +1,6 @@
 # BD NoSQL HBase
 
-Atende ao CP do CAP. Consistência e tolerância das Partições a falhas.
+Atende ao CP do CAP (Consistência e tolerância das Partições a falhas).
 
 ## Prática
 Principais comandos no HBase shell
