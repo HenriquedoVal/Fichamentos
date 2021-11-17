@@ -103,7 +103,7 @@ while 1:
     dados, endereço = s.recvfrom(4096)
     if dados:
         print('Servidor enviando mensagem')
-        s.sendto(dados + (mensagem.encode(), end)
+        s.sendto(dados + (mensagem.encode(), end))
 ~~~
 
 ## Gerador de Senhas
