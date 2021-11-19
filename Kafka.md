@@ -80,7 +80,7 @@ def createConsumer():
             else:
                 # Proper message
                 sys.stderr.write(f'{msg.topic()} [{msg.partition()}] at offset {msg.offset()} with key {msg.key()}:\n')
-                print(msg.value())
+                print(msg.value().decode('UTF-8')) #... caso não queira uma b-string
 
     except KeyboardInterrupt:
         sys.stderr.write('Aborted by user\n')
