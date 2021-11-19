@@ -103,7 +103,7 @@ while 1:
     dados, endereço = s.recvfrom(4096)
     if dados:
         print('Servidor enviando mensagem')
-        s.sendto(dados + (mensagem.encode(), end)
+        s.sendto(dados + (mensagem.encode(), end))
 ~~~
 
 ## Gerador de Senhas
@@ -123,8 +123,8 @@ print(''.join(rnd.choice(chars) for i in range(tamanho)))
 Notar que funcionaria perfeitamente com o choice sem o SystemRandom, porém a implementação deste inutiliza o seed.
 
 Doc:
->class random.SystemRandom([seed])
->Classe que usa a função os.urandom() para gerar números aleatórios a partir de fontes fornecidas pelo sistema operacional. Não disponível em >todos os sistemas. Não depende do estado do software e as sequências não são reproduzíveis. Assim, o método seed() não tem efeito e é ignorado. >Os métodos getstate() e setstate() levantam NotImplementedError se chamados.
+> class random.SystemRandom([seed])
+Classe que usa a função os.urandom() para gerar números aleatórios a partir de fontes fornecidas pelo sistema operacional. Não disponível em todos os sistemas. Não depende do estado do software e as sequências não são reproduzíveis. Assim, o método seed() não tem efeito e é ignorado. Os métodos getstate() e setstate() levantam NotImplementedError se chamados.
 
 ## Comparador de Hashes
 
@@ -282,8 +282,6 @@ dados = json.load(resposta)
 ~~~
 
 ## Ferramenta gráfica para abrir o navegador
-
-Eu sei que não tem muito a ver, a princípio, com segurança, mas segue:
 
 ~~~Python
 import webbrowser
