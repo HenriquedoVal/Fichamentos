@@ -8,7 +8,7 @@ def delivery_callback(err, msg):
     if err:
         print(f'Message failed delivery: {err}\n')
     else:
-        print(f'Message delivered to {msg.tipic()} [{msg.partition()}]\n')
+        print(f'Message delivered to {msg.topic()} [{msg.partition()}]\n')
 
 def createTopic():
     print("init")
