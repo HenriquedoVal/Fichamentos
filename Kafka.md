@@ -80,7 +80,7 @@ def createConsumer():
                     raise KafkaException(msg.error())
             else:
                 # Proper message
-                sys.stderr.write(f'%% {msg.topic()} [{msg.partition():%d}] at offset {msg.offset():%d} with key {str(msg.key())}:\n')
+                sys.stderr.write(f'{msg.topic()} [{msg.partition():%d}] at offset {msg.offset():%d} with key {str(msg.key())}:\n')
                 print(msg.value())
 
     except KeyboardInterrupt:
