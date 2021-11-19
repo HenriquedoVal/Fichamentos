@@ -8,7 +8,7 @@ def delivery_callback(err, msg):
     if err:
         print(f'Message failed delivery: {err}\n')
     else:
-        print(f'Message delivered to {msg.tipic()} [{msg.partition():%d}]\n')
+        print(f'Message delivered to {msg.tipic()} [{msg.partition()}]\n')
 
 def createTopic():
     print("init")
@@ -16,9 +16,9 @@ def createTopic():
     topic = '{Tópico_karafka}'
 
     conf = {
-        'bootstrap.servers': '{servidor_karafka},{exemplo:tricycle-01.srvs.cloudkafka.com:9094}', #str separadas por vírgula. A princípio, sem espaço
-        'session.timeout.ms': 6000,
-        'default.topic.config': {'auto.offset.reset': 'smallest'},
+        'bootstrap.servers': '{servidor_karafka},{exemplo:tricycle-01.srvs.cloudkafka.com:9094}', #separados por vírgula, mesma str
+        #'session.timeout.ms': 6000,
+        #'default.topic.config': {'auto.offset.reset': 'smallest'}, essas confs são exclusivas do consumer
         'security.protocol': 'SASL_SSL',
 	    'sasl.mechanisms': 'SCRAM-SHA-256',
         'sasl.username': '{user_cluster_karafka_ex:25fi2ymi}',
@@ -40,7 +40,6 @@ def createTopic():
 createTopic()
 
 # Conf do consumer -> https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md
-# verificar a necessidade de importação do sys e os
 ~~~
 
 ### Consumer
@@ -58,7 +57,7 @@ def createConsumer():
         'session.timeout.ms': 6000,
         'default.topic.config': {'auto.offset.reset': 'smallest'},
         'security.protocol': 'SASL_SSL',
-	'sasl.mechanisms': 'SCRAM-SHA-256',
+	    'sasl.mechanisms': 'SCRAM-SHA-256',
         'sasl.username': '{user_cluster_karafka}',
         'sasl.password': '{senha_cluster_karafka}'
     }
@@ -74,13 +73,13 @@ def createConsumer():
                 # Error or event
                 if msg.error().code() == KafkaError._PARTITION_EOF:
                     # End of partition event
-                    sys.stderr.write(f'{msg.topic()} [{msg.partition():%d}] reached end at offset {msg.offset():%d}\n')
+                    sys.stderr.write(f'{msg.topic()} [{msg.partition()}] reached end at offset {msg.offset()}\n')
                 elif msg.error():
                     # Error
                     raise KafkaException(msg.error())
             else:
                 # Proper message
-                sys.stderr.write(f'{msg.topic()} [{msg.partition():%d}] at offset {msg.offset():%d} with key {str(msg.key())}:\n')
+                sys.stderr.write(f'{msg.topic()} [{msg.partition()}] at offset {msg.offset()} with key {msg.key()}:\n')
                 print(msg.value())
 
     except KeyboardInterrupt:
@@ -92,5 +91,4 @@ def createConsumer():
 createConsumer()
 
 # Conf consumer -> https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md
-# Verificar a necessidade de importação do os
 ~~~
